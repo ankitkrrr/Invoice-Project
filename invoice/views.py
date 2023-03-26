@@ -71,7 +71,6 @@ def save_invoice(request):
         buyer_phone=buyer_phone,
         buyer_address=buyer_address,
         invoice_date=datetime.date.today()
-    
     )
     invoice.save()
     items = []
