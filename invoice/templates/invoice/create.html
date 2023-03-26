@@ -160,7 +160,7 @@
                     },
                 })
                     .then(res => res.json())
-                    .then(res => { location.href = '/print/' + res.id })
+                    .then(res => { location.href = "{% url 'print' %}" + res.id })
                     .catch(err => console.log(error));
 
             })
