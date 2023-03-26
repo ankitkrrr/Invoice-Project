@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoice</title>
+    <style>
+        * {
+            font-size: 16px;
+        }
+
+        .container {
+            border: 2px solid black;
+            padding: 6px;
+        }
+
+        .invoice-number,
+        .invoice-date {
+            border-bottom: 2px solid black;
+        }
+    </style>
+</head>
+
+
+<body>
+    <div class="container">
+        <div class="invoice-number">
+            Invoice Number : invoice{{invoice_no}}
+        </div>
+        <div class="invoice-date">
+            Invoice Date : {{invoice.invoice_date|date:"d-m-Y"}}
+        </div>
+        <table>
+            <tr style="background-color: #ccc;">
+                <td>
+                    Seller Name
+                </td>
+                <td>
+                    Buyer Name
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div><strong>{{invoice.seller_name}}</strong>
+                        <br />{{invoice.seller_address}}
+                        <br />{{invoice.seller_phone}}
+                    </div>
+                </td>
+                <td>
+                    <div><strong>{{invoice.buyer_name}}</strong>
+                        <br />{{invoice.buyer_address}}
+                        <br />{{invoice.buyer_phone}}
+                    </div>
+                </td>
+            </tr>
+        </table>
+        <table>
+            <tr style="background-color: #ccc;">
+                <td style="width: 10%;">Sl.</td>
+                <td>Product</td>
+                <td>Qunantity</td>
+                <td>Rate</td>
+                <td>Tax</td>
+                <td style="width: 15%;">Amount</td>
+            </tr>
+            {% for item in items %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{item.item_name}}</td>
+                <td>{{item.quantity}}</td>
+                <td>{{item.price}}</td>
+                <td>{{item.tax}}</td>
+                <td>{{item.total}}</td>
+            </tr>
+            {% endfor %}
+            <tr>
+                <td colspan="5" style="text-align: center;">Grand Total</td>
+                <td>{{total}}</td>
+            </tr>
+        </table>
+    </div>
+</body>
+
+</html>
