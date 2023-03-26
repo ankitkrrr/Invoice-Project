@@ -10,7 +10,7 @@ class ItemsModelAdmin(admin.ModelAdmin):
 
 @admin.register(Invoice)
 class InvoiceModelAdmin(admin.ModelAdmin):
-    list_display=['id','seller_name','seller_phone','seller_address','buyer_name','buyer_phone','buyer_address']
+    list_display=['id','seller_name','seller_phone','seller_address','buyer_name','buyer_phone','buyer_address','invoice_date']
     
 
     
