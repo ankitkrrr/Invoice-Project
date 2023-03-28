@@ -4,13 +4,12 @@ from django.shortcuts import render
 from rest_framework.response import Response
 from .models import Invoice, Items
 from .serializers import InvoiceSerializer
-from rest_framework.response import Response
+
 from django.http import HttpResponse
 from django.template.loader import get_template
 from rest_framework import generics
 import reportlab
 from html import escape
-
 from django.template.loader import render_to_string
 from xhtml2pdf import pisa
 import io
@@ -26,8 +25,6 @@ def index(request):
 def render_to_pdf(template_src, context_dict):
     html = render_to_string(template_src, context_dict)
     result = io.BytesIO()
-
-
 
     pdf = pisa.pisaDocument(io.BytesIO (html.encode("utf-8")), result)
     if not pdf.err:
@@ -82,6 +79,6 @@ def save_invoice(request):
             quantity = data['quantity'][i]
             price = data['price'][i]
             items = Items(item_name=item_name, quantity=quantity, price=price, tax=tax, invoice_id=invoice.id)
-            items.save();
-    id = invoice.id;
+            items.save()
+    id = invoice.id
     return Response({"status": "success", "id":id})
